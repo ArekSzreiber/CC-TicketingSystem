@@ -3,10 +3,6 @@ package com.codecool.ticketing.system.model;
 public class Admin extends User{
     private PublicTransport publicTransport;
 
-    Admin(PublicTransport publicTransport){
-        this.publicTransport = publicTransport;
-    }
-
     Admin(){
         this.publicTransport = new PublicTransport();
     }

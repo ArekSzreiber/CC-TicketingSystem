@@ -3,11 +3,11 @@ package com.codecool.ticketing.system.model;
 import java.time.LocalDate;
 
 public abstract class Ticket {
-    LocalDate purchaseDate;
+    private LocalDate purchaseDate;
 
     public abstract int daysValid();
 
-    protected Ticket() {
+    Ticket() {
         this.purchaseDate = LocalDate.now();
     }
 

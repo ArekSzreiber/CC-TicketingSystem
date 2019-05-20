@@ -2,7 +2,6 @@ package com.codecool.ticketing.system.model;
 
 public class DailyTicket extends Ticket {
 
-
     @Override
     public int daysValid() {
         return 1;

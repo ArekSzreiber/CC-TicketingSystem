@@ -1,9 +1,9 @@
 package com.codecool.ticketing.system.model;
 
 public class IndividualMonthlyTicket extends Ticket {
-    String routeName;
+    private String routeName;
 
-    public IndividualMonthlyTicket(String routeName) {
+    IndividualMonthlyTicket(String routeName) {
         super();
         this.routeName = routeName;
     }

@@ -1,7 +1,5 @@
 package com.codecool.ticketing.system.model;
 
-import java.time.LocalDate;
-
 public class UniversalMonthlyTicket extends Ticket{
     @Override
     public int daysValid() {
