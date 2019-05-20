@@ -41,7 +41,7 @@ public abstract class User {
 
     public boolean hasValidTicket(LocalDate day) {
         for (Ticket ticket : tickets) {
-            if (ticket.isValid(day)) {
+            if (ticket.isValid(day) && ticket.routeMatches(currentRoute)) {
                 return true;
             }
         }

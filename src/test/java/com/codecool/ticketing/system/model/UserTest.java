@@ -140,7 +140,15 @@ class UserTest {
         assertFalse(user.hasValidTicket());
     }
 
+    @Test
+    void MonthlyTicketForRouteIsNotValidForWrongRouteAfterOneWeek() {
+        User user = new Passenger();
 
+        user.buyMonthlyTicket("Metro 1");
+        user.setCurrentRoute("Bus 333");
+
+        assertFalse(user.hasValidTicket(LocalDate.now().plusWeeks(1)));
+    }
 
 
 
