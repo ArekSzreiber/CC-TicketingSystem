@@ -24,10 +24,6 @@ public abstract class Ticket {
         return new IndividualMonthlyTicket(routeName);
     }
 
-    public boolean isValid(){
-        return LocalDate.now().isBefore(purchaseDate.plusDays(daysValid()));
-    }
-
     public boolean isValid(LocalDate day){
         return day.isBefore(purchaseDate.plusDays(daysValid()));
     }

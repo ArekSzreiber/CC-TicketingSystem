@@ -19,7 +19,7 @@ public abstract class User {
     public boolean hasDailyTicket() {
         for (Ticket ticket : tickets) {
             if (ticket instanceof DailyTicket) {
-                if (ticket.isValid()) {
+                if (ticket.isValid(LocalDate.now())) {
                     return true;
                 }
             }
@@ -49,11 +49,6 @@ public abstract class User {
     }
 
     public boolean hasValidTicket() {
-        for (Ticket ticket : tickets) {
-            if (ticket.isValid() && ticket.routeMatches(currentRoute)) {
-                return true;
-            }
-        }
-        return false;
+        return hasValidTicket(LocalDate.now());
     }
 }
