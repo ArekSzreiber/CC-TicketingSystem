@@ -1,4 +1,4 @@
-package com.codecool.ticketing.system.model;
+package com.codecool.ticketing.system.model.tickets;
 
 public class IndividualMonthlyTicket extends Ticket {
     private String routeName;
@@ -10,7 +10,8 @@ public class IndividualMonthlyTicket extends Ticket {
 
     @Override
     public int daysValid() {
-        return 30;
+        return TicketType.MONTHLY.daysValid();
+
     }
 
     @Override

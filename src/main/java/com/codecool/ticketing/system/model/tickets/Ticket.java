@@ -1,4 +1,4 @@
-package com.codecool.ticketing.system.model;
+package com.codecool.ticketing.system.model.tickets;
 
 import java.time.LocalDate;
 
@@ -11,19 +11,17 @@ public abstract class Ticket {
         this.purchaseDate = LocalDate.now();
     }
 
-    public static Ticket buyTicket(int daysValid) throws NoTicketException {
-        switch (daysValid) {
-            case 1:
+    public static Ticket buyTicket(TicketType ticketType, String routeName) throws NoTicketException {
+        switch (ticketType) {
+            case DAILY:
                 return new DailyTicket();
-            case 30:
+            case MONTHLY:
                 return new UniversalMonthlyTicket();
+            case MONTHLY_FOR_ROUTE:
+                return new IndividualMonthlyTicket(routeName);
             default:
                 throw new NoTicketException();
         }
-    }
-
-    public static Ticket buyTicket(String routeName) {
-        return new IndividualMonthlyTicket(routeName);
     }
 
     public boolean isValid(LocalDate day) {

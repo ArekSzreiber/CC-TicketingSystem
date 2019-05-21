@@ -1,5 +1,6 @@
 package com.codecool.ticketing.system.model;
 
+import com.codecool.ticketing.system.model.users.Admin;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

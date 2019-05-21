@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.HashMap;
 
 public class PublicTransport {
-    AbstractMap<String, Integer> routes = new HashMap<String, Integer>();
+    private AbstractMap<String, Integer> routes = new HashMap<String, Integer>();
 
     public void addRoute(String name, int monthlyTicketCost) {
         routes.put(name, monthlyTicketCost);

@@ -1,5 +1,10 @@
 package com.codecool.ticketing.system.model;
 
+import com.codecool.ticketing.system.model.tickets.IndividualMonthlyTicket;
+import com.codecool.ticketing.system.model.tickets.Ticket;
+import com.codecool.ticketing.system.model.tickets.UniversalMonthlyTicket;
+import com.codecool.ticketing.system.model.users.Passenger;
+import com.codecool.ticketing.system.model.users.User;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -23,9 +28,11 @@ class UserTest {
     void testDailyTicketIsValidAfterPurchase() {
         User user = new Passenger();
 
+        assertFalse(user.hasValidDailyTicket());
+
         user.buyDailyTicket();
 
-        assertTrue(user.hasDailyTicket());
+        assertTrue(user.hasValidDailyTicket());
     }
 
     @Test
@@ -44,7 +51,8 @@ class UserTest {
         assertEquals(0, user.countTickets());
 
         user.buyMonthlyTicket();
-
+        Ticket ticket = user.getNewestTicket();
+        assertTrue(ticket instanceof UniversalMonthlyTicket);
         assertEquals(1, user.countTickets());
     }
 
@@ -82,8 +90,9 @@ class UserTest {
         assertEquals(0, user.countTickets());
         final String routeName = "Metro 1";
         user.buyMonthlyTicket(routeName);
-        user.setCurrentRoute(routeName);
+        Ticket ticket = user.getNewestTicket();
 
+        assertTrue(ticket instanceof IndividualMonthlyTicket);
         assertEquals(1, user.countTickets());
     }
 
@@ -91,6 +100,9 @@ class UserTest {
     void MonthlyTicketForRouteIsValidAfterPurchase() {
         User user = new Passenger();
         final String routeName = "Metro 1";
+
+        assertFalse(user.hasValidTicket());
+
         user.buyMonthlyTicket(routeName);
         user.setCurrentRoute(routeName);
 
@@ -149,8 +161,6 @@ class UserTest {
 
         assertFalse(user.hasValidTicket(LocalDate.now().plusWeeks(1)));
     }
-
-
 
 
 }

@@ -1,4 +1,6 @@
-package com.codecool.ticketing.system.model;
+package com.codecool.ticketing.system.model.users;
+
+import com.codecool.ticketing.system.model.PublicTransport;
 
 public class Admin extends User{
     private PublicTransport publicTransport;

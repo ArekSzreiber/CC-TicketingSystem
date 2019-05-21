@@ -1,4 +1,4 @@
-package com.codecool.ticketing.system.model;
+package com.codecool.ticketing.system.model.tickets;
 
 public class NoTicketException extends Throwable{
     @Override

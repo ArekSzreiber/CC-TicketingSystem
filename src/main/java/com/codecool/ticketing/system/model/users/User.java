@@ -1,4 +1,9 @@
-package com.codecool.ticketing.system.model;
+package com.codecool.ticketing.system.model.users;
+
+import com.codecool.ticketing.system.model.tickets.DailyTicket;
+import com.codecool.ticketing.system.model.tickets.NoTicketException;
+import com.codecool.ticketing.system.model.tickets.Ticket;
+import com.codecool.ticketing.system.model.tickets.TicketType;
 
 import java.time.LocalDate;
 import java.util.LinkedList;
@@ -14,13 +19,13 @@ public abstract class User {
 
     public void buyDailyTicket() {
         try {
-            tickets.add(Ticket.buyTicket(1));
+            tickets.add(Ticket.buyTicket(TicketType.DAILY, null));
         } catch (NoTicketException e) {
             e.printStackTrace();
         }
     }
 
-    public boolean hasDailyTicket() {
+    public boolean hasValidDailyTicket() {
         for (Ticket ticket : tickets) {
             if (ticket instanceof DailyTicket) {
                 if (ticket.isValid(LocalDate.now())) {
@@ -37,14 +42,18 @@ public abstract class User {
 
     public void buyMonthlyTicket() {
         try {
-            tickets.add(Ticket.buyTicket(30));
+            tickets.add(Ticket.buyTicket(TicketType.MONTHLY, null));
         } catch (NoTicketException e) {
             e.printStackTrace();
         }
     }
 
     public void buyMonthlyTicket(String routeName) {
-        tickets.add(Ticket.buyTicket(routeName));
+        try {
+            tickets.add(Ticket.buyTicket(TicketType.MONTHLY_FOR_ROUTE, routeName));
+        } catch (NoTicketException e) {
+            e.printStackTrace();
+        }
     }
 
     public boolean hasValidTicket(LocalDate day) {
@@ -58,5 +67,15 @@ public abstract class User {
 
     public boolean hasValidTicket() {
         return hasValidTicket(LocalDate.now());
+    }
+
+    public Ticket getNewestTicket() {
+        try {
+            return tickets.get(tickets.size() - 1);
+
+        } catch (IndexOutOfBoundsException e) {
+            return null;
+        }
+
     }
 }

@@ -1,13 +1,13 @@
-package com.codecool.ticketing.system.model;
+package com.codecool.ticketing.system.model.tickets;
 
 public class DailyTicket extends Ticket {
 
     @Override
     public int daysValid() {
-        return 1;
+        return TicketType.DAILY.daysValid();
     }
 
-    DailyTicket(){
+    DailyTicket() {
         super();
     }
 
