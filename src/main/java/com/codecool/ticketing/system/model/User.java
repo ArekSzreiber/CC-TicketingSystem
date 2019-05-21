@@ -13,7 +13,11 @@ public abstract class User {
     }
 
     public void buyDailyTicket() {
-        tickets.add(Ticket.newDailyTicket());
+        try {
+            tickets.add(Ticket.buyTicket(1));
+        } catch (NoTicketException e) {
+            e.printStackTrace();
+        }
     }
 
     public boolean hasDailyTicket() {
@@ -32,11 +36,15 @@ public abstract class User {
     }
 
     public void buyMonthlyTicket() {
-        tickets.add(Ticket.newMonthlyTicket());
+        try {
+            tickets.add(Ticket.buyTicket(30));
+        } catch (NoTicketException e) {
+            e.printStackTrace();
+        }
     }
 
     public void buyMonthlyTicket(String routeName) {
-        tickets.add(Ticket.newMonthlyTicket(routeName));
+        tickets.add(Ticket.buyTicket(routeName));
     }
 
     public boolean hasValidTicket(LocalDate day) {
